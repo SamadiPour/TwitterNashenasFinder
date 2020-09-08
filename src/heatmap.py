@@ -10,7 +10,7 @@ if __name__ == '__main__':
     # load database!
     tweets_date = list(
         map(
-            lambda x: datetime.strptime(x[0], '%Y-%m-%d %H:%M:%S'),
+            lambda x: datetime.fromtimestamp(x[0]),
             DatabaseHelper().get_all_dates()
         )
     )

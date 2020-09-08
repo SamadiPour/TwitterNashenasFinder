@@ -1,11 +1,13 @@
 import sqlite3
 
+import pytz
+
 
 class DatabaseHelper:
     def __init__(self) -> None:
         super().__init__()
 
-        self.connection = sqlite3.connect('../unknown.db')
+        self.connection = sqlite3.connect('unknown.db')
         self.cursor = self.connection.cursor()
 
         self.create()
@@ -13,11 +15,13 @@ class DatabaseHelper:
 
     def add_item(self, tweet, link):
         try:
-            tweet_timestamp = tweet.created_at.timestamp()
+            tweet_date = pytz.utc.localize(tweet.created_at).astimezone(pytz.timezone('Asia/Tehran'))
+            tweet_timestamp = tweet_date.timestamp()
+
             data_tuple = (
                 tweet.user.id, tweet.user.screen_name,
                 tweet.user.name, tweet.user.followers_count,
-                tweet.user.friends_count, str(tweet.created_at),
+                tweet.user.friends_count, str(tweet_date),
                 tweet_timestamp, link
             )
 
@@ -72,7 +76,7 @@ class DatabaseHelper:
 
     def get_all_dates(self):
         self.cursor.execute(
-            "SELECT tweet_date FROM unknown "
+            "SELECT tweet_timestamp FROM unknown "
             "ORDER BY tweet_timestamp"
         )
         return self.cursor.fetchall()
