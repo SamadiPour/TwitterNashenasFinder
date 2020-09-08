@@ -21,7 +21,7 @@ if __name__ == '__main__':
         't.me/BChatBot', 'telegram.me/BChatBot'
     ]
     words = ' OR '.join(link_signatures)
-    query = ' '.join([words, '-filter:retweets'])
+    query = f'{words} -filter:retweets'
     date_since = "2019-01-01"
 
     pages = tweepy.Cursor(
