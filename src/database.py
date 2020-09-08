@@ -13,7 +13,7 @@ class DatabaseHelper:
         self.create()
         self.connection.commit()
 
-    def add_item(self, tweet, link):
+    def add_item(self, tweet, link) -> bool:
         try:
             tweet_date = pytz.utc.localize(tweet.created_at).astimezone(pytz.timezone('Asia/Tehran'))
             tweet_timestamp = tweet_date.timestamp()
@@ -31,12 +31,13 @@ class DatabaseHelper:
                 if tweet_timestamp > saved_tweet_timestamp:
                     self.remove(tweet.user.id)
                 else:
-                    return
+                    return False
 
             self.insert(data_tuple)
             self.connection.commit()
+            return True
         except sqlite3.IntegrityError:
-            return
+            return False
 
     def create(self):
         query = """

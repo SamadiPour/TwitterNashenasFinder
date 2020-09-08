@@ -34,10 +34,16 @@ if __name__ == '__main__':
     ).pages()
 
     total = 0
+    success = 0
     for page in pages:
         total += len(page)
         print(f'{len(page)} New Tweets - {total} Till now')
         for tweet in page:
             link = find_link(tweet)
             if link is not None:
-                db.add_item(tweet, link)
+                result = db.add_item(tweet, link)
+                if result:
+                    success += 1
+        print(f'{success} of {len(page)} Added')
+        success = 0
+        print()
