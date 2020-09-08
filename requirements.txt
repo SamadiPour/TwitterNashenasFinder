@@ -1,0 +1,4 @@
+matplotlib==3.3.1
+pandas==1.1.1
+seaborn==0.10.1
+tweepy==3.9.0
