@@ -3,16 +3,11 @@ import tweepy as tweepy
 from database import DatabaseHelper
 from env import *
 
-
 def find_link(tweet_data):
     for url in tweet_data.entities['urls']:
         temp = str(url['expanded_url'])
-        if (temp.__contains__('t.me') or temp.__contains__('telegram.me')) and temp.__contains__('?'):
+        if ('t.me' in temp or 'telegram.me' in temp) and '?' in temp:
             return temp
-        else:
-            continue
-    return None
-
 
 if __name__ == '__main__':
     db = DatabaseHelper()
