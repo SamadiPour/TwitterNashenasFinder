@@ -1,4 +1,4 @@
-import tweepy as tweepy
+import tweepy
 
 from database import DatabaseHelper
 from env import *
