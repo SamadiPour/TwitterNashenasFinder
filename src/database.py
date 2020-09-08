@@ -7,10 +7,10 @@ class DatabaseHelper:
     def __init__(self) -> None:
         super().__init__()
 
-        if not os.path.exists('unknown.db'):
-            open('unknown.db', 'w').close()
+        if not os.path.exists('../unknown.db'):
+            open('../unknown.db', 'w').close()
 
-        self.connection = sqlite3.connect('unknown.db')
+        self.connection = sqlite3.connect('../unknown.db')
         self.cursor = self.connection.cursor()
 
         self.create()

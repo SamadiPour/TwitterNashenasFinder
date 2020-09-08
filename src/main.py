@@ -1,13 +1,15 @@
 import tweepy
 
-from database import DatabaseHelper
-from env import *
+from src.database import DatabaseHelper
+from src.env import *
+
 
 def find_link(tweet_data):
     for url in tweet_data.entities['urls']:
         temp = str(url['expanded_url'])
         if ('t.me' in temp or 'telegram.me' in temp) and '?' in temp:
             return temp
+
 
 if __name__ == '__main__':
     db = DatabaseHelper()
