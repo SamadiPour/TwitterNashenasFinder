@@ -2,7 +2,7 @@
 ## Usage
 ##### 1. Install requrements
 ```
-pip install tweepy
+pip install -r requirements.txt
 ```
 ##### 2. Clone repository
 ```
@@ -17,4 +17,6 @@ mv env.example.py env.py
 ```
 python3 main.py
 ```
-##### 5. Enter your **Twitter developer account** tokens .You can find all data in `unknown.db` :) 
+##### 5. Enter your **Twitter developer account** tokens.
+
+##### 6. You can find all data in `unknown.db`. Open it with a program that supports `sqlite`  :) 
