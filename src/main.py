@@ -24,7 +24,6 @@ if __name__ == '__main__':
     ]
     words = ' OR '.join(link_signatures)
     query = f'{words} -filter:retweets'
-    date_since = "2019-01-01"
 
     pages = tweepy.Cursor(
         api.search,
