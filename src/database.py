@@ -59,17 +59,27 @@ class DatabaseHelper:
 
     def insert(self, data):
         self.cursor.execute(
-            "INSERT INTO unknown VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+            "INSERT INTO unknown "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
             data
         )
 
     def remove(self, user_id):
         self.cursor.execute(
-            f"DELETE FROM unknown WHERE user_id = {user_id};"
+            f"DELETE FROM unknown "
+            f"WHERE user_id = {user_id};"
         )
 
     def find(self, user_id):
         self.cursor.execute(
-            f"SELECT * FROM unknown WHERE user_id = {user_id};"
+            f"SELECT * FROM unknown "
+            f"WHERE user_id = {user_id};"
         )
         return self.cursor.fetchone()
+
+    def get_all_dates(self):
+        self.cursor.execute(
+            "SELECT tweet_date FROM unknown "
+            "ORDER BY tweet_timestamp"
+        )
+        return self.cursor.fetchall()

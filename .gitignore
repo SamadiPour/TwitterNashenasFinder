@@ -2,3 +2,5 @@
 venv
 unknown.db
 src/env.py
+heatmap.svg
+heatmap.png
