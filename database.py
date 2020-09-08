@@ -18,9 +18,15 @@ class DatabaseHelper:
 
     def add_item(self, tweet, link):
         try:
-            tweet_timestamp = datetime.timestamp(datetime.strptime(str(tweet.created_at), '%Y-%m-%d %H:%M:%S'))
-            data_tuple = (tweet.user.id, tweet.user.screen_name, tweet.user.name, tweet.user.followers_count,
-                          tweet.user.friends_count, str(tweet.created_at), tweet_timestamp, link)
+            tweet_timestamp = datetime.timestamp(
+                datetime.strptime(str(tweet.created_at), '%Y-%m-%d %H:%M:%S')
+            )
+            data_tuple = (
+                tweet.user.id, tweet.user.screen_name,
+                tweet.user.name, tweet.user.followers_count,
+                tweet.user.friends_count, str(tweet.created_at),
+                tweet_timestamp, link
+            )
 
             user = self.find(tweet.user.id)
             if user is not None:
@@ -52,11 +58,18 @@ class DatabaseHelper:
         self.cursor.execute(query)
 
     def insert(self, data):
-        self.cursor.execute("INSERT INTO unknown VALUES (?, ?, ?, ?, ?, ?, ?, ?);", data)
+        self.cursor.execute(
+            "INSERT INTO unknown VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+            data
+        )
 
     def remove(self, user_id):
-        self.cursor.execute(f"DELETE FROM unknown WHERE user_id = {user_id};")
+        self.cursor.execute(
+            f"DELETE FROM unknown WHERE user_id = {user_id};"
+        )
 
     def find(self, user_id):
-        self.cursor.execute(f"SELECT * FROM unknown WHERE user_id = {user_id};")
+        self.cursor.execute(
+            f"SELECT * FROM unknown WHERE user_id = {user_id};"
+        )
         return self.cursor.fetchone()
