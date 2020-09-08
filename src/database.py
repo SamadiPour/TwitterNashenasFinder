@@ -7,10 +7,10 @@ class DatabaseHelper:
     def __init__(self) -> None:
         super().__init__()
 
-        if not os.path.exists('../unknown.db'):
-            open('../unknown.db', 'w').close()
+        if not os.path.exists('unknown.db'):
+            open('unknown.db', 'w').close()
 
-        self.connection = sqlite3.connect('../unknown.db')
+        self.connection = sqlite3.connect('unknown.db')
         self.cursor = self.connection.cursor()
 
         self.create()
@@ -18,9 +18,7 @@ class DatabaseHelper:
 
     def add_item(self, tweet, link):
         try:
-            tweet_timestamp = datetime.timestamp(
-                datetime.strptime(str(tweet.created_at), '%Y-%m-%d %H:%M:%S')
-            )
+            tweet_timestamp = tweet.created_at.timestamp()
             data_tuple = (
                 tweet.user.id, tweet.user.screen_name,
                 tweet.user.name, tweet.user.followers_count,
