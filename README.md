@@ -4,7 +4,7 @@
 ##### 1. Clone repository
 ```
 git clone https://github.com/SamadiPour/TwitterNashenasFinder.git
-cd TwitterNashenasFinder
+cd TwitterNashenasFinder/
 ```
 ##### 2. Install requrements
 ```
